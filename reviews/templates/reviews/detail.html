@@ -1,0 +1,13 @@
+<h1>{{ book.title }}</h1>
+<p>저자: {{book.author}}</p>
+
+{% if book.cover_image %}
+    <img src="{{ book.cover_image.url }}">
+{% endif %}
+
+<hr>
+
+<h3>책 설명</h3>
+<p>{{ book.description }}</p>
+
+<a href="/"> 목록으로 돌아가기</a>

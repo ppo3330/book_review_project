@@ -1,0 +1,16 @@
+<h1> Book List</h1>
+
+{% for book in books %}
+    <div>
+        <a href="{% url 'book_detail' book.pk %}">
+            <h2>{{ book.title }}</h2>
+        </a>
+
+        <p> 저자: {{book.author}}</p>
+        {% if book.cover_image %}
+            <img src="{{ book.cover_image.url }}">
+        {% endif %}
+    </div>
+{% empty %}
+    <p> 등록된 책이 없습니다.</p>
+{% endfor %}
