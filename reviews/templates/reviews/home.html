@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <h1> Book List</h1>
 
 {% for book in books %}
@@ -14,3 +18,5 @@
 {% empty %}
     <p> 등록된 책이 없습니다.</p>
 {% endfor %}
+
+{% endblock %}

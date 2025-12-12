@@ -9,7 +9,7 @@ def home(request):
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
     reviews = book.reviews.all().order_by('-created_at')
-
+    
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():

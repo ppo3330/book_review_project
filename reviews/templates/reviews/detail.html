@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <h1>{{ book.title }}</h1>
 <p>저자: {{book.author}}</p>
 
@@ -22,12 +26,19 @@
   <p>아직 리뷰가 없습니다.</p>
 {% endfor %}
 
-<h3>리뷰 작성</h3>
-
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">등록</button>
-</form>
+{% if user.is_authenticated %}
+  <h3>리뷰 작성</h3>
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">등록</button>
+  </form>
+{% else %}
+  <p>리뷰를 작성하려면 <a href="{% url 'login' %}">로그인</a>하세요.</p>
+{% endif %}
 
 <a href="/">← 목록으로 돌아가기</a>
+
+
+
+{% endblock %}
