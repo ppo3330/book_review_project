@@ -17,10 +17,15 @@
 <h3>리뷰</h3>
 
 {% for review in reviews %}
-  <div>
-    <strong>{{ review.rating }}점</strong><br>
+  <div style="margin-bottom: 15px;">
+    <strong>{{ review.user.username }}</strong> |
+    {{ review.rating }}점<br>
     {{ review.content }}<br>
-    <small>{{ review.created_at }}</small>
+
+    {% if user == review.user %}
+      <a href="{% url 'review_edit' review.pk %}">수정</a>
+      <a href="{% url 'review_delete' review.pk %}">삭제</a>
+    {% endif %}
   </div>
 {% empty %}
   <p>아직 리뷰가 없습니다.</p>
