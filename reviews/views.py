@@ -2,10 +2,21 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book, Review
 from .forms import ReviewForm
 from django.http import HttpResponseForbidden
+from django.db.models import Q
 
 def home(request):
     books = Book.objects.all().order_by('-id')
-    return render(request, 'reviews/home.html', {'books': books})
+    query = request.GET.get('q', '')
+    if query:
+        books = books.filter(
+            Q(title__icontains=query) |
+            Q(author__icontains=query)
+        )
+
+    return render(request, 'reviews/home.html', {
+        'books': books,
+        'query': query,
+    })  
 
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)

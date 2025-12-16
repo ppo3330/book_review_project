@@ -12,8 +12,11 @@ class Book(models.Model):
     published_date = models.DateField(blank=True, null=True)
     cover = models.ImageField(upload_to='covers/', blank=True, null=True)
 
-    def __str__(self):
-        return f"{self.title} — {self.author}"
+    def average_rating(self):
+        reviews = self.reviews.all()
+        if reviews.exists():
+            return round(sum(r.rating for r in reviews) / reviews.count(), 1)
+        return 0
 
 class Review(models.Model):
     RATING_CHOICES = [(i, str(i)) for i in range(1, 6)]
