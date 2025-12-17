@@ -4,19 +4,26 @@
 
 <h1> Book List</h1>
 
-<input type="text" name="q" placeholder="검색" value="{{ query }}">
+<form method="GET">
+  <input type="text" name="q" placeholder="책 제목 또는 저자 검색">
+  <button type="submit">검색</button>
+</form>
 
 {% for book in books %}
     <div>
+        {% if book.cover %}
+            <img src="{{ book.cover.url }}" width="120">
+        {% endif %}
         <a href="{% url 'book_detail' book.pk %}">
             <h2>{{ book.title }}</h2>
         </a>
 
         <p> 저자: {{book.author}}</p>
         <p>평점: {{ book.average_rating }} / 5</p>
+        
     </div>
 {% empty %}
-    <p> 등록된 책이 없습니다.</p>
+    <p>검색 결과가 없습니다.</p>
 {% endfor %}
 
 {% endblock %}

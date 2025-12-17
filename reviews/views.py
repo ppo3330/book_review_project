@@ -3,6 +3,7 @@ from .models import Book, Review
 from .forms import ReviewForm
 from django.http import HttpResponseForbidden
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     books = Book.objects.all().order_by('-id')
@@ -40,6 +41,7 @@ def book_detail(request, pk):
     }
     return render(request, 'reviews/detail.html', context)
 
+@login_required
 def review_edit(request, pk):
     review = get_object_or_404(Review, pk=pk)
 
@@ -59,6 +61,7 @@ def review_edit(request, pk):
     'review': review,
 })
 
+@login_required
 def review_delete(request, pk):
     review = get_object_or_404(Review, pk=pk)
 

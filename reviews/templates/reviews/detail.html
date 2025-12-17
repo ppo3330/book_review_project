@@ -3,8 +3,12 @@
 {% block content %}
 
 <h2>{{ book.title }}</h2>
+{% if book.cover %}
+  <img src="{{ book.cover.url }}" width="120">
+{% endif %}
 <p>저자: {{ book.author }}</p>
 <p>평균 평점: {{ book.average_rating }} / 5 </p>
+
 <hr>
 
 <h3>책 설명</h3>
@@ -13,7 +17,7 @@
 <h3>리뷰</h3>
 
 {% for review in reviews %}
-  <div style="margin-bottom: 15px;">
+  <div>
     <strong>{{ review.user.username }}</strong> |
 
     {% for i in "12345" %}
