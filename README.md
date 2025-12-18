@@ -28,9 +28,13 @@ Django 기반 책 리뷰 웹 서비스입니다.
 
 ---
 
+# 스크린샷
+![홈화면 미리보기](https://github.com/ppo3330/book_review_project/blob/main/home.PNG)
+![세부사항 미리보기](https://github.com/ppo3330/book_review_project/blob/main/detail.PNG)
+
 # 실행 방법
 ```bash
-git clone https://github.com/yourname/bookreview_project.git
+git clone https://https://github.com/ppo3330/book_review_project.git
 cd bookreview_project
 pip install -r requirements.txt
 python manage.py migrate
