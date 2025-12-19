@@ -17,6 +17,14 @@ class Book(models.Model):
         if reviews.exists():
             return round(sum(r.rating for r in reviews) / reviews.count(), 1)
         return 0
+    def delete(self, *args, **kwargs):
+        if self.cover:
+            try:
+                if os.path.isfile(self.cover.path):
+                    os.remove(self.cover.path)
+            except Exception:
+                pass
+        super().delete(*args, **kwargs) 
 
 class Review(models.Model):
     RATING_CHOICES = [(i, str(i)) for i in range(1, 6)]
