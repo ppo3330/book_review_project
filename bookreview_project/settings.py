@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'reviews',
     'accounts',
-    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
