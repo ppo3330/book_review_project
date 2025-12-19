@@ -5,6 +5,8 @@
 <h2>{{ book.title }}</h2>
 {% if book.cover %}
   <img src="{{ book.cover.url }}" width="120">
+{% else %}
+    <img src="{% static 'images/no_image.png' %}">
 {% endif %}
 <p>저자: {{ book.author }}</p>
 <p>평균 평점: {{ book.average_rating }} / 5 </p>

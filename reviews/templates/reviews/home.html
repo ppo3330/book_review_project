@@ -13,6 +13,8 @@
     <div>
         {% if book.cover %}
             <img src="{{ book.cover.url }}" width="120">
+        {% else %}
+            <img src="{% static 'images/no_image.png' %}">
         {% endif %}
         <a href="{% url 'book_detail' book.pk %}">
             <h2>{{ book.title }}</h2>
